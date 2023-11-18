@@ -32,3 +32,11 @@ Route::get('/admin/on_going', function () {
 Route::get('/admin/done', function () {
     return view('admin/done');
 });
+
+Route::get('/admin/request/add_task', function () {
+    return view('admin/addTask');
+});
+
+Route::get('/admin/maps/realtime', function () {
+    return view('admin/maps/realtimeLocation');
+});

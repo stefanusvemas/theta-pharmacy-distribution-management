@@ -15,7 +15,7 @@
         <nav class="navbar justify-content-between py-2" style="background-color: #22668D;">
             <div class="container py-2">
                 <a class="navbar-brand text-light" href="{{url('admin')}}">
-                    <img src="{{'../images/logo.png'}}" alt="Logo" width="100" class="d-inline-block align-text-top">
+                    <img src="{{'../../images/logo.png'}}" alt="Logo" width="100" class="d-inline-block align-text-top">
                 </a>
                 <div class="row justify-content-center align-items-center">
                     <div class="col-auto">
@@ -33,7 +33,6 @@
             </div>
         </nav>
     </header>
-
     @yield('content')
 
     <footer class="mt-auto">
