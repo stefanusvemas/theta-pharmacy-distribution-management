@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +34,7 @@ Route::get('/admin/done', function () {
     return view('admin/done');
 });
 
-Route::get('/admin/request/add_task', function () {
-    return view('admin/addTask');
-});
+Route::get('/admin/request/add_task', [AddTaskController::class, 'cekOngkir']);
 
 Route::get('/admin/maps/realtime', function () {
     return view('admin/maps/realtimeLocation');
