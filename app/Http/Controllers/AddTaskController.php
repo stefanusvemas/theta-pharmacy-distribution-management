@@ -9,10 +9,6 @@ class AddTaskController extends Controller
 {
     public function index()
     {
-        return view('admin/addTask');
-    }
-    public function cekOngkir(Request $request)
-    {
         $responseJne = Http::withHeaders([
             'key' => config("services.rajaongkir.key")
         ])->post('https://api.rajaongkir.com/starter/cost', [
@@ -53,5 +49,18 @@ class AddTaskController extends Controller
             'layananPos' => $layananPos,
             'layananTiki' => $layananTiki
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $phone= config('services.callmebot.phone');
+        $apikey= config('services.callmebot.key');
+        $message="https://tinyurl.com/theta-qr";
+
+        $url='https://api.callmebot.com/whatsapp.php?source=php&phone='.$phone.'&text='.urlencode($message).'&apikey='.$apikey;
+
+        $response = Http::get($url);
+        
+        return redirect('/admin/label');
     }
 }

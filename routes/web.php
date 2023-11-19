@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AddTaskController;
+use App\Http\Controllers\PdfController;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +36,14 @@ Route::get('/admin/done', function () {
     return view('admin/done');
 });
 
-Route::get('/admin/request/add_task', [AddTaskController::class, 'cekOngkir']);
+Route::resource('admin/add_task', AddTaskController::class);
 
 Route::get('/admin/maps/realtime', function () {
     return view('admin/maps/realtimeLocation');
 });
+
+Route::get('/verify/{verify_key}', function () {
+    return view('verify');
+});
+
+Route::get('/admin/label', [PdfController::class, 'label']);

@@ -38,5 +38,10 @@ return [
     'rajaongkir' => [
         'key' => env('RAJAONGKIR_API_KEY'),
         'package' => env('RAJAONGKIR_PACKAGE'),
+    ],
+
+    'callmebot' => [
+        'key' => env('CALLMEBOT_API_KEY'),
+        'phone' => env('PHONE_NUMBER'),
     ]
 ];

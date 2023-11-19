@@ -25,21 +25,21 @@
                                         <td>PASAR PRAMUKA LT DASAR AKS 159 PS.PRAMUKA <span class="badge text-bg-danger">Life Saving</span></td>
                                         <td>TRIR002</td>
                                         <td>167</td>
-                                        <td><a href="{{url('/admin/request/add_task')}}">Terima</a></td>
+                                        <td><a href="{{url('/admin/add_task')}}">Terima</a></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>JL. SULTAN AGUNG NO. 67 SETIA BUDI PASAR MANGGIS</td>
                                         <td>FONK009</td>
                                         <td>2</td>
-                                        <td><a href="{{url('/admin/request/add_task')}}">Terima</a></td>
+                                        <td><a href="{{url('/admin/add_task')}}">Terima</a></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>JL. PADEMANGAN IV NO. 257 A PADEMANGAN PADEMANGAN TIMUR</td>
                                         <td>CLAV002</td>
                                         <td>6</td>
-                                        <td><a href="{{url('/admin/request/add_task')}}">Terima</a></td>
+                                        <td><a href="{{url('/admin/add_task')}}">Terima</a></td>
                                     </tr>
                                 </tbody>
                             </table>

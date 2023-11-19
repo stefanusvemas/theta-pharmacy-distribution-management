@@ -1,7 +1,7 @@
 @extends('admin/index')
 @section('content')
 <style>
-     #map {
+    #map {
         height: 100%;
     }
 
@@ -17,7 +17,8 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="mt-2">Tambah Tugas Pengiriman</h5>
-                <form id="deliveryForm" action="{{ url('your_php_route') }}" method="POST" onsubmit="setSelectedValue()">
+                <form id="deliveryForm" action="{{ route('add_task.store') }}" method="POST" onsubmit="setSelectedValue()">
+                    @csrf
                     <div class="row justify-content-start align-items-end">
                         <div class="col-auto col-lg-4">
                             <label for="moda">Moda Transportasi</label>
@@ -62,58 +63,51 @@
     <div id="map" class="container my-2" style="display: none;"></div>
 
 
-    
+
 
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Add event listener to moda select element
+    document.addEventListener('DOMContentLoaded', function() {
         const modaSelect = document.getElementById('moda');
-        modaSelect.addEventListener('change', function () {
+        modaSelect.addEventListener('change', function() {
             filterLayananOptions();
-            
-            // Call initMap() only if 'Motor' or 'GrandMax' is selected
+
             const selectedMode = modaSelect.value;
             if (selectedMode === 'TWO_WHEELER' || selectedMode === 'DRIVING') {
                 initMap();
                 map.style.display = 'block';
             } else {
-                // Hide the map if a different option is selected
                 const map = document.getElementById("map");
                 map.style.display = 'none';
             }
         });
 
-        // Your existing filterLayananOptions function
         function filterLayananOptions() {
             const modaSelect = document.getElementById('moda');
             const layananSelect = document.getElementById('layanan');
 
-            // Reset layanan options
             layananSelect.innerHTML = '<option selected hidden>Layanan Pengiriman</option>';
 
-            // If JNE is selected, add only JNE options
             if (modaSelect.value === 'jne') {
                 layananSelect.disabled = false;
                 @foreach($layananJne as $i => $layanan)
-                    layananSelect.innerHTML += "<option value='{{ $i+1 }}'>{{ $layanan['description'] }} Rp.{{ number_format($layanan['cost'][0]['value'], 2) }} ({{ $layanan['cost'][0]['etd'] }} days)</option>";
+                layananSelect.innerHTML += "<option value='{{ $i+1 }}'>{{ $layanan['description'] }} Rp.{{ number_format($layanan['cost'][0]['value'], 2) }} ({{ $layanan['cost'][0]['etd'] }} days)</option>";
                 @endforeach
             } else if (modaSelect.value === 'pos') {
                 layananSelect.disabled = false;
                 @foreach($layananPos as $i => $layanan)
-                    layananSelect.innerHTML += "<option value='{{ $i+1 }}'>{{ $layanan['description'] }} Rp.{{ number_format($layanan['cost'][0]['value'], 2) }} ({{ $layanan['cost'][0]['etd'] }} days)</option>";
+                layananSelect.innerHTML += "<option value='{{ $i+1 }}'>{{ $layanan['description'] }} Rp.{{ number_format($layanan['cost'][0]['value'], 2) }} ({{ $layanan['cost'][0]['etd'] }} days)</option>";
                 @endforeach
             } else if (modaSelect.value === 'tiki') {
                 layananSelect.disabled = false;
                 @foreach($layananTiki as $i => $layanan)
-                    layananSelect.innerHTML += "<option value='{{ $i+1 }}'>{{ $layanan['description'] }} Rp.{{ number_format($layanan['cost'][0]['value'], 2) }} ({{ $layanan['cost'][0]['etd'] }} days)</option>";
+                layananSelect.innerHTML += "<option value='{{ $i+1 }}'>{{ $layanan['description'] }} Rp.{{ number_format($layanan['cost'][0]['value'], 2) }} ({{ $layanan['cost'][0]['etd'] }} days)</option>";
                 @endforeach
             } else {
                 layananSelect.disabled = true;
             }
         }
 
-        // Your existing initMap function
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 15,
@@ -151,14 +145,13 @@
                 travelMode: google.maps.TravelMode[selectedMode]
             };
 
-            directionsService.route(request, function (result, status) {
+            directionsService.route(request, function(result, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
                     directionsRenderer.setDirections(result);
                 }
             });
         }
 
-        // Call initMap when the page loads
         initMap();
     });
 </script>
